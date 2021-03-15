@@ -1,39 +1,67 @@
-var dragonHP = 10;
+var wrapperEle = document.body.querySelector(".wrap");
 
-var playerHP = 5;
-while (dragonHP > 0 || playerHP > 0) {
-  var playerDamage = prompt(
-    "You are attacked by a FireBreathing Dragon. How many hits will you attempt? (Between 1-5)"
-  );
-
-  playerDamage = Math.floor(Math.random() * playerDamage + 1);
-  var dragonDamage = Math.floor(Math.random() * 2 + 1);
-
-  if (playerDamage < 1 || playerDamage > 5) {
-    alert("Damage must be between 1 and 5");
+var list = [
+  {
+    name: "Bob",
+    damage: 2,
+    health: 10,
+    warrior: true
+  },
+  {
+    name: "Jerry",
+    damage: 1,
+    health: 12,
+    warrior: true
+  },
+  {
+    name: "Mavis",
+    damage: 2,
+    health: 10,
+    warrior: true
+  },
+  {
+    name: "Morty",
+    damage: 4,
+    health: 10,
+    warrior: true
+  },
+  {
+    name: "Shorty",
+    damage: 10,
+    health: 3,
+    warrior: false
+  },
+  {
+    name: "Porty",
+    damage: 1,
+    health: 14,
+    warrior: true
+  },
+  {
+    name: "Perry",
+    damage: 2,
+    health: 9,
+    warrior: true
+  },
+  {
+    name: "Larry",
+    damage: 2,
+    health: 17,
+    warrior: false
   }
-
-  if (isNaN(playerDamage)) {
-    alert("Value entered is not a number.");
-    break;
+];
+var searchTerm = "a";
+for (var i = 0; i < list.length; i++) {
+  if (list[i].health >= 10) {
+    if (list[i].damage >= 2) {
+      if (list[i].warrior == true) {
+        personEle = document.createElement("div");
+        personEle.innerHTML = list[i].name;
+        wrapperEle.appendChild(personEle);
+        if (list[i].name.includes(searchTerm)) {
+          personEle.style.color = "red";
+        }
+      }
+    }
   }
-
-  dragonHP = dragonHP - playerDamage;
-  if (dragonHP <= 0) break;
-  playerHP = playerHP - dragonDamage;
-  if (playerHP <= 0) break;
 }
-
-if (playerHP <= 0) {
-  document.body.querySelector(".PlayerDeath").innerHTML =
-    "You have Died! The Dragon Wins!";
-}
-
-if (dragonHP <= 0) {
-  document.body.querySelector(".DragonDeath").innerHTML =
-    "You have slain the Dragon!";
-}
-
-document.body.querySelector("#playerHP").innerHTML = playerHP;
-
-document.body.querySelector("#dragonHP").innerHTML = dragonHP;
