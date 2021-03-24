@@ -1,67 +1,46 @@
-var wrapperEle = document.body.querySelector(".wrap");
-
+var wrap = document.body.querySelector(".wrap");
 var list = [
   {
-    name: "Bob",
-    damage: 2,
-    health: 10,
-    warrior: true
-  },
-  {
-    name: "Jerry",
-    damage: 1,
-    health: 12,
-    warrior: true
-  },
-  {
-    name: "Mavis",
-    damage: 2,
-    health: 10,
-    warrior: true
-  },
-  {
-    name: "Morty",
-    damage: 4,
-    health: 10,
-    warrior: true
-  },
-  {
-    name: "Shorty",
-    damage: 10,
-    health: 3,
-    warrior: false
-  },
-  {
-    name: "Porty",
-    damage: 1,
-    health: 14,
-    warrior: true
-  },
-  {
-    name: "Perry",
-    damage: 2,
-    health: 9,
-    warrior: true
+    name: "Harry",
+    age: 25
   },
   {
     name: "Larry",
-    damage: 2,
-    health: 17,
-    warrior: false
+    age: 15
+  },
+  {
+    name: "Bert",
+    age: 45
+  },
+  {
+    name: "Jerry",
+    age: 35
+  },
+  {
+    name: "Berry",
+    age: 5
+  },
+  {
+    name: "Bart",
+    age: 55
   }
 ];
-var searchTerm = "a";
-for (var i = 0; i < list.length; i++) {
-  if (list[i].health >= 10) {
-    if (list[i].damage >= 2) {
-      if (list[i].warrior == true) {
-        personEle = document.createElement("div");
-        personEle.innerHTML = list[i].name;
-        wrapperEle.appendChild(personEle);
-        if (list[i].name.includes(searchTerm)) {
-          personEle.style.color = "red";
-        }
-      }
-    }
-  }
+for(var i = 0; i < list.length; i++) {
+  var ele = document.createElement("div");
+  var eleName = document.createElement("h1");
+  var eleAge = document.createElement("h4");
+if(list[i].age > 25){
+  ele.style.color="green";
+}
+eleName.innerHTML = "Name: " + list[i].name;
+  eleAge.innerHTML = "Age: " + list[i].age;
+  ele.appendChild(eleName);
+  ele.appendChild(eleAge);
+  wrap.appendChild(ele);
+}
+var clicks = 5;
+
+function counter(){
+  clicks += 1
+  document.getElementById("clicks").innerHTML = clicks
 }
